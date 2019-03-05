@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -10,6 +10,14 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Raleway', 'sans-serif'],
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -32,7 +40,7 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-tmdb",
+      resolve: 'gatsby-source-tmdb',
       options: {
         apiKey: process.env.API_KEY,
         sessionID: process.env.SESSION_ID,
@@ -40,11 +48,11 @@ module.exports = {
           account: {
             activate: true,
             endpoints: {
-              movies: ["accountFavoriteMovies"],
+              movies: ['accountFavoriteMovies'],
             },
           },
         },
-        timezone: "Europe/London",
+        timezone: 'Europe/London',
         reqPerTenSeconds: 36,
         poster: true,
         backdrop: true,

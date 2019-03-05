@@ -1,52 +1,46 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-
-/**
-|--------------------------------------------------
-| movie.
-| accountFavoriteMoviesId: `Number`
-| budget: `Number`
-| homepage: `String`
-| id: `String`
-| imdb_id: `String`
-| original_title: `String`
-| overview: `String`
-| revenue: `Number`
-| tagline: `String`
-| title: `String`
-| vote_average: `Number`
-|--------------------------------------------------
-*/
+import MovieInfoContainer from '../components/MovieInfoContainer'
+import '../components/layout.css'
 
 const styles = {
   movieContainer: {
-    height: '100vh',
+    padding: '0',
+    margin: '0',
+  },
+  backdrop: {
+    filter: 'brightness(30%)',
+    zIndex: '-10',
+    opacity: '0.9',
   },
   poster: {
     position: 'absolute',
-    top: '60%',
-    left: '50%',
+    top: '70%',
+    left: '70%',
     transform: 'translate(-50%, -50%)',
+    borderRadius: '5px',
+    boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
   },
 }
 
 export const Movie = ({ data: { tmdbAccountFavoriteMovies: movie } }) => {
   console.log(movie.poster_path.childImageSharp.fixed)
-  const { title, imdb_id } = movie
   return (
     <div style={styles.movieContainer}>
       {movie.backdrop_path && (
-        <Img fluid={movie.backdrop_path.childImageSharp.fluid} />
+        <Img
+          fluid={movie.backdrop_path.childImageSharp.fluid}
+          style={styles.backdrop}
+        />
       )}
-      <h1>{title}</h1>
-      <h4>{imdb_id}</h4>
       {movie.poster_path && (
         <Img
           fixed={movie.poster_path.childImageSharp.fixed}
           style={styles.poster}
         />
       )}
+      <MovieInfoContainer movie={movie} />
     </div>
   )
 }
