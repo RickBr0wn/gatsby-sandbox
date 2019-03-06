@@ -3,16 +3,15 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-// You can delete this file if you're not using it
 const _ = require(`lodash`)
 const path = require(`path`)
 const slash = require(`slash`)
 
-var urlify = require("urlify").create({
+var urlify = require('urlify').create({
   addEToUmlauts: true,
   szToSs: true,
-  spaces: "-",
-  nonPrintable: "-",
+  spaces: '-',
+  nonPrintable: '-',
   trim: true,
 })
 
@@ -33,8 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // check for errors
   if (result.errors) {
-    console.log("ERROR:: ", result.error)
-    throw result.errors
+    throw new Error(errors)
   }
 
   const template = path.resolve(`./src/templates/movie.js`)
