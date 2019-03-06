@@ -42,7 +42,7 @@ const styles = {
 */
 
 const MovieInfoContainer = ({
-  movie: { title, imdb_id, revenue, tagline, overview },
+  movie: { title, imdb_id, revenue, tagline, overview, vote_average },
 }) => {
   console.log(tagline)
   return (
@@ -52,6 +52,7 @@ const MovieInfoContainer = ({
         <h2>{tagline}</h2>
         <h5>{imdb_id}</h5>
         <h5>{revenue}</h5>
+        <h5>{vote_average}</h5>
         <div style={styles.paragraph}>
           <p>{overview}</p>
         </div>
